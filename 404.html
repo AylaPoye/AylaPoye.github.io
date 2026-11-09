@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="th">
   <head>
     <meta charset="utf-8" />
     <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
     <title>NEXUS Translator - เครื่องมือแปลและอ่านนิยาย AI</title>
     
-    <!-- PWA & iOS Web App Meta Tags -->
+    <!-- PWA & iOS Safari Web App Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="NEXUS" />
@@ -26,9 +26,8 @@
     <!-- Web Manifest -->
     <link rel="manifest" href="/manifest.json" />
 
-    <!-- The `react-native-web` recommended style reset -->
+    <!-- Style reset & iOS rubber-band bounce prevention -->
     <style id="expo-reset">
-      /* These styles make the body full-height */
       html,
       body {
         height: 100%;
@@ -38,12 +37,12 @@
         -webkit-tap-highlight-color: transparent;
         -webkit-touch-callout: none;
         user-select: none;
+        overscroll-behavior: none;
+        -webkit-overscroll-behavior: none;
       }
-      /* These styles disable body scrolling if you are using <ScrollView> */
       body {
         overflow: hidden;
       }
-      /* These styles make the root element full-height */
       #root {
         display: flex;
         height: 100%;
@@ -54,10 +53,25 @@
   </head>
 
   <body>
-    <!-- Use static rendering with Expo Router to support running without JavaScript. -->
-    <noscript> You need to enable JavaScript to run this app. </noscript>
-    <!-- The root element for your Expo app. -->
+    <!-- Fallback if JavaScript is disabled -->
+    <noscript>คุณจำเป็นต้องเปิดใช้งาน JavaScript เพื่อใช้งาน NEXUS Translator</noscript>
     <div id="root"></div>
-  <script src="/_expo/static/js/web/index-069e582fea520d7e69c8c964e1dab2d4.js" defer></script>
-</body>
+
+    <!-- Service Worker Registration for Offline PWA -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js').then(
+            function(reg) {
+              console.log('NEXUS ServiceWorker registered:', reg.scope);
+            },
+            function(err) {
+              console.warn('NEXUS ServiceWorker registration failed:', err);
+            }
+          );
+        });
+      }
+    </script>
+    <script src="/_expo/static/js/web/index-dfbed4cc9dc2327e3773536e2880bd47.js" defer></script>
+  </body>
 </html>
