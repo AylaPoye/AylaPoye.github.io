@@ -1,5 +1,5 @@
 // NEXUS Translator PWA - Service Worker
-const CACHE_NAME = 'nexus-pwa-v1.0.4';
+const CACHE_NAME = 'nexus-pwa-v1.0.5';
 
 const PRECACHE_ASSETS = [
   '/',
@@ -10,7 +10,7 @@ const PRECACHE_ASSETS = [
   '/apple-touch-icon-precomposed.png',
   '/icon-192.png',
   '/icon-512.png',
-  '/_expo/static/js/web/index-d6530fab50b0e4f9c038ed7431f7ac98.js'
+  '/_expo/static/js/web/index-2426fb46cb768ec3b41ddb97737f6867.js'
 ];
 
 // Install: pre-cache core application shell
